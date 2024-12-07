@@ -70,7 +70,6 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
   network_device {
     bridge  = var.vnic_bridge
-    vlan_id = var.vlan_tag
   }
 
   dynamic "disk" {
