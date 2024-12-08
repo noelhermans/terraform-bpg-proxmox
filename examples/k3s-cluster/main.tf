@@ -97,7 +97,10 @@ resource "null_resource" "controller" {
 
   provisioner "remote-exec" {
     inline = [
-      "curl -sfL https://get.k3s.io | K3S_TOKEN=${random_string.k3s_token.result} sh -"
+      "curl -sfL https://get.k3s.io | K3S_TOKEN=${random_string.k3s_token.result} sh -",
+      "mkdir -p /home/ubuntu/.kube ",
+      "cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config",
+      "chown -R ubuntu.ubuntu /home/ubuntu/.kube",
     ]
   }
 }
